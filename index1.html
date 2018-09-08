@@ -1,0 +1,65 @@
+<!-- need one search bar -->
+<!-- one submirt button -->
+<!-- when you enter any text in search bar it should give all the related gify images along with the ratings -->
+<!-- also a button should be added to the screen for that search  -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="display"></div>
+    <form id = Input>
+      <input type="text" id = 'gifyName'>
+      <input type= "submit" id = 'submit' value = "submit">
+      <div class="displayImg mt-5"></div>
+
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+  var gify = [];
+  var clicked;
+  $("#submit").on('click',function(event){
+    event.preventDefault();
+    var gif = $("#gifyName").val();
+    gify.push(gif);
+    console.log(gify);
+    displayBtn();
+    // btnClick();
+   console.log(clicked)
+   var queryUrl = "http://api.giphy.com/v1/gifs/search?q="+gif+"&api_key=na4flw0eFDY5p53Kccwg65sTpY0OCl67";
+    console.log(queryUrl)
+    $.ajax({
+      url: queryUrl,
+      method: "GET"
+    }).then(function(response){
+      console.log(response);
+      $(".displayImg").append("<img class = new>");
+      $(".new").attr("src",response.data[0].images.downsized.url);
+    })
+  })
+  function displayBtn(){
+    for( var i = 0; i<gify.length; i++){
+      var addBtn = $("<button>");
+      addBtn.text(gify[i]);
+      $(".display").append(addBtn);
+    }
+  }
+  function btnClick(){
+    $("button").on("click", function(){
+        clicked = $(this).text();
+        console.log(clicked);
+      })
+  }
+  </script>
+
+
+</body>
+</html>
