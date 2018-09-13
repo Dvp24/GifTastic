@@ -1,0 +1,42 @@
+body, html {
+  height: 100%;
+  width: 100%;
+}
+
+body{
+  background-color: #121212;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* height: 100%; */
+  /* width: 100%; */
+}
+#submit:hover,img:hover, button:hover{
+  cursor: pointer;
+}
+
+img{
+  height: 200px;
+  width: 260px;
+  margin: 15px;
+}
+button{
+  margin: 10px 5px;
+  border-radius: 10%;
+  background-color: #493240;
+
+}
+.nav{
+  background-color: #493240;
+  width: 305px;
+  height: 100%;
+  position: fixed;
+
+}
+.display{
+  
+  margin-left: 305px;
+  overflow: auto;
+}
+.displayImg{
+ overflow: auto;
+}

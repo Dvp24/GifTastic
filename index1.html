@@ -6,60 +6,77 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <link rel="stylesheet" href="reset.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <div class="container">
-    <div class="display"></div>
-    <form id = Input>
-      <input type="text" id = 'gifyName'>
-      <input type= "submit" id = 'submit' value = "submit">
+  <div class="bck">
+    <div class="nav">
+      <form id="input" class="m-4">
+        <input type="text" id='gifyName' class="rounded">
+        <input type="submit" id='submit' class="rounded" value="submit">
+      </form>
+    </div>
+    <div class="display">
+      <div class="displayBtn"></div>
       <div class="displayImg mt-5"></div>
+    </div>
+
 
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="gif.js"></script>
   <script>
-  var gify = [];
-  var clicked;
-  $("#submit").on('click',function(event){
-    event.preventDefault();
-    var gif = $("#gifyName").val();
-    gify.push(gif);
-    console.log(gify);
-    displayBtn();
-    // btnClick();
-   console.log(clicked)
-   var queryUrl = "http://api.giphy.com/v1/gifs/search?q="+gif+"&api_key=na4flw0eFDY5p53Kccwg65sTpY0OCl67";
-    console.log(queryUrl)
-    $.ajax({
-      url: queryUrl,
-      method: "GET"
-    }).then(function(response){
-      console.log(response);
-      $(".displayImg").append("<img class = new>");
-      $(".new").attr("src",response.data[0].images.downsized.url);
+    var gify = [];
+    var clicked;
+    $("#submit").on('click', function (event) {
+      event.preventDefault();
+      var gif = $("#gifyName").val();
+      gify.push(gif);
+      console.log(gify);
+      displayBtn();
     })
-  })
-  function displayBtn(){
-    for( var i = 0; i<gify.length; i++){
-      var addBtn = $("<button>");
-      addBtn.text(gify[i]);
-      $(".display").append(addBtn);
+
+    function displayBtn() {
+      $(".displayBtn").empty();
+      for (var i = 0; i < gify.length; i++) {
+        var addBtn = $("<button>");
+        addBtn.text(gify[i]).addClass("gif-button");
+        $(".displayBtn").append(addBtn);
+      }
     }
-  }
-  function btnClick(){
-    $("button").on("click", function(){
-        clicked = $(this).text();
-        console.log(clicked);
+
+
+    $(document).on("click", ".gif-button", function () {
+      clicked = $(this).text();
+      console.log(clicked);
+      var queryUrl = "http://api.giphy.com/v1/gifs/search?q=" + clicked + "&api_key=na4flw0eFDY5p53Kccwg65sTpY0OCl67";
+      console.log(queryUrl)
+      $.ajax({
+        url: queryUrl,
+        method: "GET"
+      }).then(function (response) {
+        console.log(response);
+        for (var i = 0; i < response.data.length; i++) {
+          $(".displayImg").append("<img id='new" + i + "'>");
+          // $("img").attr("id","new"+i);
+          $("#new" + i).attr("src", response.data[i].images.downsized.url);
+        }
       })
-  }
+
+    })
+
   </script>
 
 
 </body>
+
 </html>
