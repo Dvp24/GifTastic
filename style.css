@@ -8,7 +8,7 @@ body, html {
   position: fixed;
 }
 body{
-  background-color: #121212;
+  background-color: #000000;
   background-repeat: no-repeat;
   background-size: cover;
   /* height: 100%; */
@@ -26,11 +26,9 @@ img{
 button{
   margin: 10px 5px;
   border-radius: 10%;
-  background-color: #493240;
-
 }
-.nav{
-  background-color: #493240;
+.nav-section{
+  background-color: #121212;
   width: 305px;
   height: 100%;
   position: fixed;
@@ -43,4 +41,27 @@ button{
 }
 .displayImg{
  overflow: auto;
+ margin-left: 350px;
 }
+#submit, #gifyName, button{
+  background-color: #121212 !important;
+  color: #ffffff !important;
+}
+h4{
+  color: #ffffff;
+  margin-left: 15px 
+}
+.prev, .next{
+  opacity: 0.5;
+  position: relative;
+  top: 150px;
+}
+.next{
+  left: 800px;
+}
+.prev{
+  left: 10px;
+  z-index: 40;
+}
+
+
