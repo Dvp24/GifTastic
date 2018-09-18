@@ -128,7 +128,7 @@
     $(document).on("click", ".gif-button", function () {
       clicked = $(this).text();
       console.log(clicked);
-      var queryUrl = "http://api.giphy.com/v1/gifs/search?q=" + clicked + "&api_key=na4flw0eFDY5p53Kccwg65sTpY0OCl67";
+      var queryUrl = "https://api.giphy.com/v1/gifs/search?q=" + clicked + "&api_key=na4flw0eFDY5p53Kccwg65sTpY0OCl67";
       console.log(queryUrl)
       $.ajax({
         url: queryUrl,
