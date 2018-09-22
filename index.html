@@ -18,133 +18,108 @@
 </head>
 
 <body>
+  <div class="front"><img src="https://media.giphy.com/media/YJBNjrvG5Ctmo/giphy.gif"></div>
+  <div class="main">
+    <div class="nav-section">
+      <form id="input" class="m-4">
+        <input type="text" id='gifyName' class="rounded">
+        <input type="submit" id='submit' class="rounded" value="submit">
+      </form>
+      <div class="displayBtn"></div>
 
-  <div class="nav-section">
-    <form id="input" class="m-4">
-      <input type="text" id='gifyName' class="rounded">
-      <input type="submit" id='submit' class="rounded" value="submit">
-    </form>
-    <div class="displayBtn"></div>
+    </div>
+    <div class="displayImg pt-5">
+      <h4>Trending</h4>
+      <div class="row trending">
+        <div class="slides ">
+          <!-- <button class="prev"><</button> -->
+          <!-- <button class="next">></button> -->
+            <ol class="slider-list">
+              <li class="my-3" data-slide-state='peeking'>
+                <ul class="peek-4">
 
-  </div>
-  <div class="displayImg pt-5">
-    <h4>Trending</h4>
-    <div class="row trending">
-      <!-- <div class="slides "> -->
-        <!-- <button class="prev"><</button>
-        <button class="next">></button>
-        <ol class="slider-list">
-          <li class="my-3" data-slide-state='peeking'>
-            <ul class="peek-4">
 
-            
-            </ul>
+                </ul>
 
-          </li>
-        </ol> -->
-        <div id="carouselExample" class="carousel slide" data-ride="carousel" data-interval="9000">
-            <div class="carousel-inner row w-100 mx-auto" role="listbox">
-                <div class="carousel-item col-md-4 active">
-                    <img class="img-fluid mx-auto d-block" src="https://via.placeholder.com/600x400/000/fff?text=1" alt="slide 1">
-                </div>
-                <div class="carousel-item col-md-4">
-                    <img class="img-fluid mx-auto d-block" src="https://via.placeholder.com/600x400?text=2" alt="slide 2">
-                </div>
-                <div class="carousel-item col-md-4">
-                    <img class="img-fluid mx-auto d-block" src="https://via.placeholder.com/600x400?text=3" alt="slide 3">
-                </div>
-                <div class="carousel-item col-md-4">
-                    <img class="img-fluid mx-auto d-block" src="https://via.placeholder.com/600x400?text=4" alt="slide 4">
-                </div>
-                <div class="carousel-item col-md-4">
-                    <img class="img-fluid mx-auto d-block" src="https://via.placeholder.com/600x400?text=5" alt="slide 5">
-                </div>
-                <div class="carousel-item col-md-4">
-                    <img class="img-fluid mx-auto d-block" src="https://via.placeholder.com/600x400?text=6" alt="slide 6">
-                </div>
-                <div class="carousel-item col-md-4">
-                    <img class="img-fluid mx-auto d-block" src="https://via.placeholder.com/600x400?text=7" alt="slide 7">
-                </div>
-                <div class="carousel-item col-md-4">
-                    <img class="img-fluid mx-auto d-block" src="https://via.placeholder.com/600x400?text=8" alt="slide 7">
-                </div>
-            </div>
-            <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
-                <i class="fa fa-chevron-left fa-lg text-muted"></i>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next text-faded" href="#carouselExample" role="button" data-slide="next">
-                <i class="fa fa-chevron-right fa-lg text-muted"></i>
-                <span class="sr-only">Next</span>
-            </a>
+              </li>
+            </ol>
         </div>
       </div>
     </div>
-  </div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="gif.js"></script>
-  <script>
-
-   
-    $.ajax({
-      url: "http://api.giphy.com/v1/gifs/search?q=trending&api_key=na4flw0eFDY5p53Kccwg65sTpY0OCl67",
-      method: "GET"
-    }).then(function (resp) {
-      console.log(resp);
-    
-      for (var j = 0; j < resp.data.length; j++) {
-       $(".peek-4").append("<li class='col '> <img id ='trnd"+j+"'></li>")
-       $("#trnd"+j).attr("src",resp.data[j].images.downsized.url);
-      }
-    })
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="gif.js"></script>
+    <script>
+      // var front = setTimeout(function(){
+      //   $("img").show();
+      //   $(".main").hide();
+      // }, 5000)
+      // $("img").hide();
+      // $(".main").show();
 
 
 
-    // ---------------------------------------------------------------------------------------------------
-     // $(".trending").append("<img id='trnd" + j + "'>");
-        // $("#trnd" + j).attr("src", resp.data[j].images.downsized.url);
-        // $(".trending").show();
-    // ---------------------------------------------------------------------------------------------------
-    var gify = [];
-    var clicked;
-    $("#submit").on('click', function (event) {
-      event.preventDefault();
-      var gif = $("#gifyName").val();
-      gify.push(gif);
-      console.log(gify);
-      displayBtn();
-    })
-
-    function displayBtn() {
-      $(".displayBtn").empty();
-      for (var i = 0; i < gify.length; i++) {
-        var addBtn = $("<button>");
-        addBtn.text(gify[i]).addClass("gif-button");
-        $(".displayBtn").append(addBtn);
-      }
-    }
-
-
-    $(document).on("click", ".gif-button", function () {
-      clicked = $(this).text();
-      console.log(clicked);
-      var queryUrl = "https://api.giphy.com/v1/gifs/search?q=" + clicked + "&api_key=na4flw0eFDY5p53Kccwg65sTpY0OCl67";
-      console.log(queryUrl)
       $.ajax({
-        url: queryUrl,
+        url: "http://api.giphy.com/v1/gifs/search?q=trending&api_key=na4flw0eFDY5p53Kccwg65sTpY0OCl67",
         method: "GET"
-      }).then(function (response) {
-        console.log(response);
-        $(".trending").hide();
-        for (var i = 0; i < response.data.length; i++) {
-          $(".displayImg").append("<img id='new" + i + "'>");
-          // $("img").attr("id","new"+i);
-          $("#new" + i).attr("src", response.data[i].images.downsized.url);
+      }).then(function (resp) {
+        console.log(resp);
+
+        for (var j = 0; j < resp.data.length; j++) {
+          $(".peek-4").append("<li class='colm '> <img id ='trnd" + j + "'></li>")
+          $("#trnd" + j).attr("src", resp.data[j].images.downsized.url);
         }
+        
       })
 
-    })
-  </script>
+
+
+      // ---------------------------------------------------------------------------------------------------
+      // $(".trending").append("<img id='trnd" + j + "'>");
+      // $("#trnd" + j).attr("src", resp.data[j].images.downsized.url);
+      // $(".trending").show();
+      // ---------------------------------------------------------------------------------------------------
+      var gify = [];
+      var clicked;
+      var gif;
+      $("#submit").on('click', function (event) {
+        event.preventDefault();
+        gif = $("#gifyName").val();
+        gify.push(gif);
+        console.log(gify);
+        displayBtn();
+      })
+
+      function displayBtn() {
+        $(".displayBtn").empty();
+        for (var i = 0; i < gify.length; i++) {
+          var addBtn = $("<button>");
+          addBtn.text(gify[i]).addClass("gif-button");
+          $(".displayBtn").append(addBtn);
+        }
+      }
+
+
+      $(document).on("click", ".gif-button", function () {
+        clicked = $(this).text();
+        console.log(clicked);
+        $("h4").html(gif)
+        var queryUrl = "https://api.giphy.com/v1/gifs/search?q=" + clicked + "&api_key=na4flw0eFDY5p53Kccwg65sTpY0OCl67";
+        console.log(queryUrl)
+        $.ajax({
+          url: queryUrl,
+          method: "GET"
+        }).then(function (response) {
+          console.log(response);
+          $(".trending").hide();
+          for (var i = 0; i < response.data.length; i++) {
+            $(".displayImg").append("<img id='new" + i + "'>");
+            // $("img").attr("id","new"+i);
+            $("#new" + i).attr("src", response.data[i].images.downsized.url);
+          }
+        })
+
+      })
+    </script>
 
 
 </body>
